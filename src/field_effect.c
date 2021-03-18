@@ -967,8 +967,8 @@ void MultiplyPaletteRGBComponents(u16 i, u8 r, u8 g, u8 b)
     curBlue  -= ((curBlue  * b) >> 4);
     
     color  = curRed;
-    color |= curGreen <<  5;
-    color |= curBlue  << 10;
+    color |= (curGreen <<  5);
+    color |= (curBlue  << 10);
     
     gPlttBufferFaded[i] = color;
 }
@@ -3703,8 +3703,8 @@ static void DestroyDeoxysRockEffect_RockFragments(s16* data, u8 taskId)
     {
         struct Sprite *sprite = &gSprites[gObjectEvents[tObjectEventId].spriteId];
         gObjectEvents[tObjectEventId].invisible = TRUE;
-        BlendPalettes(0x0000FFFF, 0x10, RGB_WHITE);
-        BeginNormalPaletteFade(0x0000FFFF, 0, 0x10, 0, RGB_WHITE);
+        BlendPalettes(PALETTES_BG, 0x10, RGB_WHITE);
+        BeginNormalPaletteFade(PALETTES_BG, 0, 0x10, 0, RGB_WHITE);
         CreateDeoxysRockFragments(sprite);
         PlaySE(SE_THUNDER);
         StartEndingDeoxysRockCameraShake(tCameraTaskId);
